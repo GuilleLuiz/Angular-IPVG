@@ -1,0 +1,32 @@
+<div *ngIf="carroCompra">
+    <div class="table-responsive">
+        <table class="table table-sm table-hover">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let productoCarro of carroCompra.productos">
+                    <td><img class="card-img-top" [src]="productoCarro.producto.image" alt="Card image cap" width="16px" height="64px"></td>
+                    <td>{{productoCarro.producto.title}}</td>
+                    <td>{{productoCarro.cantidad | number: '1.0-0'}}</td>
+                    <td>${{productoCarro.producto.price | number: '1.0-0'}}</td>
+                    <td>
+                        <button class='btn btn-danger' (click)="eliminarLineaProducto(productoCarro)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <div class="row float-right">
+        <div>
+            <h3>Total: ${{carroCompra.total | number: '1.0-0'}}</h3>
+        </div>
+    </div>
+</div>

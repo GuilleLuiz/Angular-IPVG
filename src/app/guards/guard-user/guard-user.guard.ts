@@ -1,0 +1,25 @@
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class GuardUserGuard implements CanActivate {
+
+  constructor(private router: Router){}
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+      console.log('en guard de usuario');
+      const token = localStorage.getItem('token');
+      const usuario = localStorage.getItem('usuario');
+
+      if (token && usuario && usuario !== 'johnd') {
+        return true;
+      }
+    return this.router.navigate(['/404']);
+  }
+  
+}

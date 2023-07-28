@@ -1,0 +1,11 @@
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" [src]="producto.image" alt="Card image cap" width="64px" height="256px">
+    <div class="card-body">
+        <h5 class="card-title">{{producto.title}}</h5>
+        <!-- Solo agrega 1 -->
+        <button href="#" class="btn btn-primary" (click)="agregarAlCarro()">Agregar al carro</button>
+        <!-- Solo mostrar estos dos si el producto YA ESTA AGREGADO -->
+        <button *ngIf="carroCompraProducto" href="#" class="btn btn-danger" (click)="quitarUnAUnidadDelCarro()">Quitar 1 unidad del carro</button>
+        <button *ngIf="carroCompraProducto" href="#" class="btn btn-danger" (click)="quitarLineaDelCarro()">Quitar línea del carro</button>
+    </div>
+</div>

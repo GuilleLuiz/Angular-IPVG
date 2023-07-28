@@ -1,36 +1,42 @@
+import { APP_ROUTES } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { ListaRegionesComponent } from './components/lista-regiones/lista-regiones.component';
-import { ListaProvinciasComponent } from './components/lista-provincias/lista-provincias.component';
-import { ListaAvesComponent } from './components/lista-aves/lista-aves.component';
-import { NavComponent } from './components/nav/nav.component';
-import { CargaDetalleAveComponent } from './components/carga-detalle-ave/carga-detalle-ave.component';
-import { DetalleListaAveComponent } from './components/detalle-lista-ave/detalle-lista-ave.component';
-import { CargaListaAvesComponent } from './components/carga-lista-aves/carga-lista-aves.component';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCoffee, fas, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InicioComponent } from './paginas/inicio/inicio.component';
+import { ContactoComponent } from './paginas/contacto/contacto.component';
+import { RouterModule } from '@angular/router';
+
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es-CL';
+registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    ListaRegionesComponent,
-    ListaProvinciasComponent,
-    ListaAvesComponent,
-    NavComponent,
-    CargaDetalleAveComponent,
-    DetalleListaAveComponent,
-    CargaListaAvesComponent
+    InicioComponent,
+    ContactoComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule,
+    NgbModule,
+    RouterModule.forRoot(APP_ROUTES),
   ],
-  providers: [],
+  providers: [ { provide: LOCALE_ID, useValue: 'es-CL' } ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas);
+    library.addIcons(faCoffee);
+    library.addIcons(faSpinner);
+  }
+
+}

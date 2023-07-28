@@ -1,0 +1,14 @@
+<p>clase-cinco works!</p>
+
+<app-patron-observador></app-patron-observador>
+<app-patron-observador-arreglo></app-patron-observador-arreglo>
+
+<div appHighlight [appHighlightColor]="'green'">Hola Highlight</div>
+
+<input rutMask type="text" placeholder="Escribe tu rut">
+
+<button *appSoloAdmin>Solo lo puede ver el admin</button>
+
+<h1>Números</h1>
+<button appScrollToId [appScrollId]="'50'">Ir a Numero</button>
+<div *ngFor="let numero of numeros" [id]="numero">{{numero}}</div>

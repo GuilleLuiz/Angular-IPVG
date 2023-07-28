@@ -4,8 +4,6 @@
 
 export const environment = {
   production: false,
-  rutaApi: 'http://localhost:3000',
-  apiGobierno: 'https://apis.digital.gob.cl/dpa/regiones',
   apiAves: 'https://aves.ninjas.cl/api/birds',
   apiStore: 'https://fakestoreapi.com/',
 };
