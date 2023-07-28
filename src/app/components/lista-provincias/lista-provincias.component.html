@@ -1,0 +1,10 @@
+<div>
+    <div *ngIf="mostrarCargandoProvincias()">Cargando Provincias...</div>
+    <div *ngIf="!cargandoProvincias && provincias.length > 0">
+        <br>
+        <div *ngFor="let provincia of provincias">
+            <p class="mb-1">{{provincia.nombre}}</p>
+            <small>Lat: {{provincia.lat}} y Lon: {{provincia.lng}}</small>
+        </div>
+    </div>
+</div>

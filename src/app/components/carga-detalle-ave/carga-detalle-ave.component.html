@@ -1,0 +1,16 @@
+<div *ngIf="cargandoDetalleAve; else detalleAveCargada">
+    Cargando Detalle Ave...
+</div>
+<ng-template #detalleAveCargada>
+    <div class="card mb-1" *ngIf="detalleAve">
+        <img class="card-img-top" [src]="detalleAve.images.main">
+        <div class="card-body">
+            <h5 class="card-title">{{detalleAve.name.spanish}}</h5>
+            <p class="card-text" *ngIf="tieneIucn(detalleAve)"><strong>IUCN: </strong>{{detalleAve.iucn.title}} - {{detalleAve.iucn.description}}</p>
+            <p class="card-text" *ngIf="detalleAve.size"><strong>Tamaño: </strong>{{detalleAve.size}}</p>
+            <p class="card-text" *ngIf="detalleAve.habitat"><strong>Habitat: </strong>{{detalleAve.habitat}}.</p>
+            <p class="card-text" *ngIf="detalleAve.didyouknow"><strong>¿Sabías qué?: </strong>{{detalleAve.didyouknow}}.</p>
+            <button class='btn btn-primary' (click)="recargar()">Recargar</button>
+        </div>
+    </div>
+</ng-template>

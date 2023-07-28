@@ -1,0 +1,44 @@
+<div>
+
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Buscar Ave..." aria-describedby="basic-addon2" (input)="inputCambiado($event)">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" (click)="buscarAve()">Buscar</button>
+        </div>
+    </div>
+
+    <!-- <div *ngIf="inputBusqueda">Búsqueda: {{inputBusqueda}}</div>
+    <div *ngIf="!inputBusqueda">No se ha escrito en búsqueda.</div> -->
+
+    <div *ngIf="inputBusqueda; else sinInputBusqueda">Búsqueda: {{inputBusqueda}}</div>
+    <ng-template #sinInputBusqueda>
+        <div>No se ha escrito en búsqueda.</div>
+    </ng-template>
+
+</div>
+
+<div>
+    <div class="row">
+        <div class='col-6'>
+            <!-- TODO: TAREA 2: Convertir en componente | Hasta el Viernes 15 -->
+            <app-carga-lista-aves [avesFiltradas]="avesFiltradas" (aveClickeada)="asignarAveClickeada($event)"></app-carga-lista-aves>
+            <!-- <div *ngIf="cargandoAves; else avesCargadas">
+                Cargando Aves...
+            </div>
+            <ng-template #avesCargadas>
+                <app-detalle-lista-ave *ngFor="let ave of avesFiltradas" [detalle]="ave" (detalleClickeado)="asignarAveClickeada($event)"></app-detalle-lista-ave> -->
+            <!-- <div class="card mb-1" *ngFor="let ave of avesFiltradas">
+                    <img class="card-img-top" [src]="ave.images.main">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ave.name.spanish}}</h5>
+                        <a href="#" class="btn btn-primary">Detalle</a>
+                    </div>
+                </div> -->
+            <!-- </ng-template> -->
+            <!-- FIN TAREA 2 -->
+        </div>
+        <div class="col-6">
+            <app-carga-detalle-ave #cargaDetalleAve *ngIf="aveClickeada" [ave]="aveClickeada"></app-carga-detalle-ave>
+        </div>
+    </div>
+</div>

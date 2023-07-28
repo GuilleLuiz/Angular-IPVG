@@ -1,0 +1,43 @@
+<div>
+    <h1>{{titulo}}</h1>
+    <button class='btn btn-primary' (click)="cargarRegiones()">Cargar Regiones</button>
+    <div class="row">
+        <div id="id_regiones" class="col-8">
+            <div *ngIf="mostrarCargandoRegiones()">Cargando Regiones...</div>
+            <div *ngIf="!cargandoRegiones && regiones.length > 0">
+                <br>
+                <div *ngFor="let region of regiones" class="list-group">
+                    <a (click)="mostrarProvincias(region)" [attr.href]="'#region_'+region.codigo" class="list-group-item list-group-item-action" data-bs-toggle="collapse" [attr.aria-controls]="'region_'+region.codigo" aria-expanded="false">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{region.nombre}}</h5>
+                            <small>Lat: {{region.lat}} y Lon: {{region.lng}}</small>
+                        </div>
+                        <div *ngIf="regionClickeada" class="collapse" [attr.id]="'region_'+region.codigo">
+                            <!-- <app-lista-provincias [codigo]="region.codigo"></app-lista-provincias> -->
+                            <!-- <div *ngIf="mostrarCargandoProvincias()">Cargando Provincias...</div>
+                            <div *ngIf="!cargandoProvincias && provincias.length > 0">
+                                <br>
+                                <div *ngFor="let provincia of provincias">
+                                    <p class="mb-1">{{provincia.nombre}}</p>
+                                    <small>Lat: {{provincia.lat}} y Lon: {{provincia.lng}}</small>
+                                </div>
+                            </div> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="id_provincias" class="col-4">
+            <!-- <app-lista-provincias></app-lista-provincias> -->
+            <div *ngIf="mostrarCargandoProvincias()">Cargando Provincias...</div>
+            <div *ngIf="!cargandoProvincias && provincias.length > 0">
+                <br>
+                <h3>{{ mostrarTituloProvincia() }}</h3>
+                <div *ngFor="let provincia of provincias">
+                    <p class="mb-1">{{provincia.nombre}}</p>
+                    <small>Lat: {{provincia.lat}} y Lon: {{provincia.lng}}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
